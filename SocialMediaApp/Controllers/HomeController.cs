@@ -3,14 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SocialMediaApp.Models;
 
 namespace SocialMediaApp.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private ApplicationDbContext _context;
+
+        public HomeController()
         {
-            return View();
+            _context = new ApplicationDbContext();
+        }
+
+        public ActionResult Index(string userName)
+        {
+            if (!String.IsNullOrEmpty(userName))
+            {
+                ViewBag.UserName = userName;
+                return View();
+            }
+
+            return RedirectToAction("SignIn", "SignIn");
         }
 
         public ActionResult About()

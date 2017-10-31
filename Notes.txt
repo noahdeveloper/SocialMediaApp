@@ -1,0 +1,7 @@
+Post on Github.
+
+Cookie set and get on sign in page.
+
+Cookie set and get on sign up page.
+
+https://www.w3schools.com/js/js_cookies.asp

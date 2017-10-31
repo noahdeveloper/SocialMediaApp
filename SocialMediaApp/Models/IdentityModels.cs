@@ -20,6 +20,10 @@ namespace SocialMediaApp.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<UserAccount> UserAccount { get; set; }
+        public DbSet<UserInformation> UserInformation { get; set; }
+
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

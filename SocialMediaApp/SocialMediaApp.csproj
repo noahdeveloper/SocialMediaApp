@@ -189,16 +189,80 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CurrentUser.cs" />
+    <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InboxController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Controllers\SignInController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708262102183_InitialCreate.cs" />
+    <Compile Include="Migrations\201708262102183_InitialCreate.Designer.cs">
+      <DependentUpon>201708262102183_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708292354538_AddingTestModel.cs" />
+    <Compile Include="Migrations\201708292354538_AddingTestModel.Designer.cs">
+      <DependentUpon>201708292354538_AddingTestModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708300000244_AddTestBoolToTestModel.cs" />
+    <Compile Include="Migrations\201708300000244_AddTestBoolToTestModel.Designer.cs">
+      <DependentUpon>201708300000244_AddTestBoolToTestModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709021849432_AddUserModel.cs" />
+    <Compile Include="Migrations\201709021849432_AddUserModel.Designer.cs">
+      <DependentUpon>201709021849432_AddUserModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709090019252_editToUserAccountModel.cs" />
+    <Compile Include="Migrations\201709090019252_editToUserAccountModel.Designer.cs">
+      <DependentUpon>201709090019252_editToUserAccountModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709100006174_EditToUserAccount.cs" />
+    <Compile Include="Migrations\201709100006174_EditToUserAccount.Designer.cs">
+      <DependentUpon>201709100006174_EditToUserAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710131915385_Add_UserAccountInformation_Model.cs" />
+    <Compile Include="Migrations\201710131915385_Add_UserAccountInformation_Model.Designer.cs">
+      <DependentUpon>201710131915385_Add_UserAccountInformation_Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710261315522_update.cs" />
+    <Compile Include="Migrations\201710261315522_update.Designer.cs">
+      <DependentUpon>201710261315522_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710281823357_AddTest.cs" />
+    <Compile Include="Migrations\201710281823357_AddTest.Designer.cs">
+      <DependentUpon>201710281823357_AddTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710281845240_Update_UderInformation.cs" />
+    <Compile Include="Migrations\201710281845240_Update_UderInformation.Designer.cs">
+      <DependentUpon>201710281845240_Update_UderInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710281848130_Update_UnderInformation.cs" />
+    <Compile Include="Migrations\201710281848130_Update_UnderInformation.Designer.cs">
+      <DependentUpon>201710281848130_Update_UnderInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710291721234_Update_UserInformation.cs" />
+    <Compile Include="Migrations\201710291721234_Update_UserInformation.Designer.cs">
+      <DependentUpon>201710291721234_Update_UserInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710301606307_Deleted_Test.cs" />
+    <Compile Include="Migrations\201710301606307_Deleted_Test.Designer.cs">
+      <DependentUpon>201710301606307_Deleted_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\UserAccount.cs" />
+    <Compile Include="Models\UserInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="UploadHandler.ashx.cs">
+      <DependentUpon>UploadHandler.ashx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -212,9 +276,11 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\FileUpload.js" />
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -257,9 +323,18 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Register\SignUp.cshtml" />
+    <Content Include="Views\SignIn\SignIn.cshtml" />
+    <Content Include="Views\Settings\UserProfile.cshtml" />
+    <Content Include="UploadHandler.ashx" />
+    <Content Include="Views\Settings\ProfilePicture.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\" />
+    <Folder Include="Views\Friends\" />
+    <Folder Include="Views\Inbox\" />
+    <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -274,7 +349,45 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <EmbeddedResource Include="Migrations\201708262102183_InitialCreate.resx">
+      <DependentUpon>201708262102183_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708292354538_AddingTestModel.resx">
+      <DependentUpon>201708292354538_AddingTestModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708300000244_AddTestBoolToTestModel.resx">
+      <DependentUpon>201708300000244_AddTestBoolToTestModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709021849432_AddUserModel.resx">
+      <DependentUpon>201709021849432_AddUserModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709090019252_editToUserAccountModel.resx">
+      <DependentUpon>201709090019252_editToUserAccountModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709100006174_EditToUserAccount.resx">
+      <DependentUpon>201709100006174_EditToUserAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710131915385_Add_UserAccountInformation_Model.resx">
+      <DependentUpon>201710131915385_Add_UserAccountInformation_Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710261315522_update.resx">
+      <DependentUpon>201710261315522_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710281823357_AddTest.resx">
+      <DependentUpon>201710281823357_AddTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710281845240_Update_UderInformation.resx">
+      <DependentUpon>201710281845240_Update_UderInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710281848130_Update_UnderInformation.resx">
+      <DependentUpon>201710281848130_Update_UnderInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710291721234_Update_UserInformation.resx">
+      <DependentUpon>201710291721234_Update_UserInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710301606307_Deleted_Test.resx">
+      <DependentUpon>201710301606307_Deleted_Test.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
