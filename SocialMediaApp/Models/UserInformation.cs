@@ -27,5 +27,5 @@ namespace SocialMediaApp.Models
         [Display(Name = "Profile Picture")]
         public string ProfilePicName { get; set; }
     }
-
+    //Git Test
 }
