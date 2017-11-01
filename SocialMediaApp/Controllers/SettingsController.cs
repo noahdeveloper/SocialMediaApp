@@ -24,15 +24,23 @@ namespace SocialMediaApp.Controllers
             return View();
         }
 
-        public ActionResult UserProfile(string userName)
+        public ActionResult UserProfile()
         {
-
-            UserInformation model = new UserInformation
+            if (Request.Cookies["userNameSocialMediaApp"] != null)
             {
-                ID = userName
-            };
+                string userNameCookie = Request.Cookies["userNameSocialMediaApp"].Value;
 
-            return View(model);
+                UserInformation model = new UserInformation
+                {
+                    ID = userNameCookie
+                };
+
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("SignIn", "SignIn");
+            } 
         }
 
         [HttpPost]

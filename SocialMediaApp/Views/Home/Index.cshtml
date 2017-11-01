@@ -17,8 +17,8 @@
                 <li><a href="javascript:void(0);" onclick="passUserNameToIndex()">Home</a></li>
                 <li>@Html.ActionLink("Friends", "Index", "Friends")</li>
                 <li>@Html.ActionLink("Inbox", "Index", "Inbox")</li>
-                @*<li>@Html.ActionLink("Settings", "UserProfile", "Settings")</li>*@
-                <li><a href="javascript:void(0);" onclick="passUserNameToSettings()">Settings</a></li>
+                <li>@Html.ActionLink("Settings", "UserProfile", "Settings")</li>
+                @*<li><a href="javascript:void(0);" onclick="passUserNameToSettings()">Settings</a></li>*@
             </ul>
             
             @if (@ViewBag.UserName != null)
@@ -104,6 +104,21 @@
 
             var URL = window.location.protocol + "//" + window.location.host + "/Settings/UserProfile/?userName=" + x;
             window.location.href = URL;
+        }
+    </script>
+
+    <script>
+        var x = $("#userName").val();
+
+        $(document).ready(function () {
+            setCookie("userNameSocialMediaApp", x, 1);
+        });
+
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
         }
     </script>
 }

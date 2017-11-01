@@ -12,6 +12,8 @@
 
     @using (Html.BeginForm("UserProfile", "Settings", FormMethod.Post))
     {
+        @Html.HiddenFor(m => m.ID)
+
         <div class="form-group">
             @Html.LabelFor(m => m.Age, new { @class = "col-m-2 control-label" })
             @Html.TextBoxFor(m => m.Age, new { @class = "form-control", @Value = "" })
