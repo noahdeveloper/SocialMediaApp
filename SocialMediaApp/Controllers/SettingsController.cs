@@ -57,7 +57,7 @@ namespace SocialMediaApp.Controllers
                     try
                     {
                         Directory.CreateDirectory(path);
-                        file.SaveAs(path + Path.GetFileName(file.FileName));
+                        file.SaveAs(path + model.ID + Path.GetExtension(file.FileName));
                     }
                     catch (Exception ex)
                     {
@@ -66,8 +66,22 @@ namespace SocialMediaApp.Controllers
                 }
             }
 
-            //var account = _context.UserInfo.Where(x => x.ID == model.ID).FirstOrDefault();
+            model.ProfilePicName = model.ID;
 
+            var accountInfo = _context.UserInformation.Where(x => x.ID == model.ID).FirstOrDefault();
+
+            accountInfo.Age = model.Age;
+            accountInfo.FavoriteQuote = model.FavoriteQuote;
+            accountInfo.ProfilePicName = model.ProfilePicName;
+
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
 
             return View();
         }

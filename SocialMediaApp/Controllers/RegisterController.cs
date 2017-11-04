@@ -57,8 +57,7 @@ namespace SocialMediaApp.Controllers
 
             UserInformation userInfoModel = new UserInformation
             {
-                ID = model.UserName,
-                AccountUserName = model.UserName
+                ID = model.UserName
             };
 
             try

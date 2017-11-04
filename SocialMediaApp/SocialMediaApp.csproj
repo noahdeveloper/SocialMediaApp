@@ -252,6 +252,10 @@
     <Compile Include="Migrations\201710301606307_Deleted_Test.Designer.cs">
       <DependentUpon>201710301606307_Deleted_Test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711021316510_Update_UserInformation1.cs" />
+    <Compile Include="Migrations\201711021316510_Update_UserInformation1.Designer.cs">
+      <DependentUpon>201711021316510_Update_UserInformation1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -387,6 +391,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710301606307_Deleted_Test.resx">
       <DependentUpon>201710301606307_Deleted_Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711021316510_Update_UserInformation1.resx">
+      <DependentUpon>201711021316510_Update_UserInformation1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
