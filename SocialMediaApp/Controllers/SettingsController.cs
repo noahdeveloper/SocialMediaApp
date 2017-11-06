@@ -46,12 +46,17 @@ namespace SocialMediaApp.Controllers
         [HttpPost]
         public ActionResult UserProfile(HttpPostedFileBase file, UserInformation model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             if (file != null)
             {
                 string path = Server.MapPath("~/Uploads/");
                 List<string> imageExtensions = new List<string> { ".JPG", ".JPE", ".BMP", ".GIF", ".PNG" };
 
-                //if its image file
+                //if is image file
                 if (imageExtensions.Contains(Path.GetExtension(Path.GetExtension(file.FileName).ToUpperInvariant())))
                 {
                     try
@@ -63,6 +68,11 @@ namespace SocialMediaApp.Controllers
                     {
                         string error = ex.Message;
                     }
+                }
+                else
+                {
+                    ViewBag.ImageError = true;
+                    return View();
                 }
             }
 
