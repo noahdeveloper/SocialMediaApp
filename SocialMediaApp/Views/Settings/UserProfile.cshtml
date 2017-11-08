@@ -56,20 +56,12 @@
                     contentType: false,
                     processData: false,
                     success: function (view) {
-                        alert("success");
-                    },
-                    complete: function () {
-                        alert("complete");
+                        var URL = window.location.protocol + "//" + window.location.host + "/Home";
+                        window.location.href = URL;
                     }
                 });
             });
         })
-
-        //$(document).ready(function () {
-        //    if (ViewBag.ImageError != null || ViewBag.ImageError == true) {
-        //        alert("Error with image.");
-        //    }
-        //});
     </script>
 }
 

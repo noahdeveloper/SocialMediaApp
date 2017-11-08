@@ -71,8 +71,7 @@ namespace SocialMediaApp.Controllers
                 }
                 else
                 {
-                    ViewBag.ImageError = true;
-                    return View();
+                    return View(model);
                 }
             }
 
@@ -94,6 +93,7 @@ namespace SocialMediaApp.Controllers
             }
 
             return View();
+            //return RedirectToAction("Index", "Home");
         }
 
         public ActionResult ProfilePicture(string userName)
