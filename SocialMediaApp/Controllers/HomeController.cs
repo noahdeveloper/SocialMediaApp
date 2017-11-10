@@ -18,23 +18,13 @@ namespace SocialMediaApp.Controllers
 
         public ActionResult Index(string userName)
         {
-            //if (!String.IsNullOrEmpty(userName))
-            //{
-            //    ViewBag.UserName = userName;
-            //    return View();
-            //}
-
-            //return RedirectToAction("SignIn", "SignIn");
-
-            string userNameCookie = Request.Cookies["userNameSocialMediaApp"].Value;
-
-            if (String.IsNullOrEmpty(userNameCookie))
+            if (!String.IsNullOrEmpty(userName))
             {
-                return RedirectToAction("SignIn", "SignIn");
+                ViewBag.UserName = userName;
+                return View();
             }
 
-            ViewBag.UserName = userNameCookie;
-            return View();
+            return RedirectToAction("SignIn", "SignIn");
         }
 
         public ActionResult About()

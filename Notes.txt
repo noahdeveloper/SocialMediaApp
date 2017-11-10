@@ -1,5 +1,2 @@
----Post on Github.
-
-https://www.w3schools.com/js/js_cookies.asp
-
-
+Allow one picture per user
+	if there is picture with username then replace else add new.

@@ -35,6 +35,8 @@ namespace SocialMediaApp.Controllers
                     ID = userNameCookie
                 };
 
+                ViewBag.UserName = Request.Cookies["userNameSocialMediaApp"].Value;
+
                 return View(model);
             }
             else
@@ -92,8 +94,7 @@ namespace SocialMediaApp.Controllers
                 Console.WriteLine(e);
             }
 
-            return View();
-            //return RedirectToAction("Index", "Home");
+            return View(model);
         }
 
         public ActionResult ProfilePicture(string userName)
