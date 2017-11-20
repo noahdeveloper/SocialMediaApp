@@ -190,13 +190,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CurrentUser.cs" />
-    <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InboxController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\SignInController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -262,6 +262,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Models\UserInformation.cs" />
+    <Compile Include="Models\UsersViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="UploadHandler.ashx.cs">
@@ -332,11 +333,13 @@
     <Content Include="Views\Settings\UserProfile.cshtml" />
     <Content Include="UploadHandler.ashx" />
     <Content Include="Views\Settings\ProfilePicture.cshtml" />
+    <Content Include="Views\Friends\Friends.cshtml" />
+    <Content Include="Views\Users\Users.cshtml" />
+    <Content Include="Views\Users\GoToUsersHome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\" />
-    <Folder Include="Views\Friends\" />
     <Folder Include="Views\Inbox\" />
     <Folder Include="Views\Upload\" />
   </ItemGroup>

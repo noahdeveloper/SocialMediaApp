@@ -1,5 +1,7 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model SocialMediaApp.Models.UsersViewModel
+
+@{
+    ViewBag.Title = "Users";
 }
 
 <div class="navbar navbar-inverse navbar-fixed-top">
@@ -20,19 +22,19 @@
                 <li>@Html.ActionLink("Settings", "UserProfile", "Settings")</li>
                 @*<li><a href="javascript:void(0);" onclick="passUserNameToSettings()">Settings</a></li>*@
             </ul>
-            
+
             @if (@ViewBag.UserName != null)
             {
 
-                    @Html.AntiForgeryToken()
+                @Html.AntiForgeryToken()
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            @Html.ActionLink((string)ViewBag.UserName, "Index", "Home", new { userName = @ViewBag.UserName }, htmlAttributes: new { title = "Manage" })
-                        </li>
-                        <li>@Html.ActionLink("Sign Out","SignIn", "SignIn")</li>
-                    </ul>
-                
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        @Html.ActionLink((string)ViewBag.UserName, "Index", "Home", new { userName = @ViewBag.UserName }, htmlAttributes: new { title = "Manage" })
+                    </li>
+                    <li>@Html.ActionLink("Sign Out", "SignIn", "SignIn")</li>
+                </ul>
+
             }
             else
             {
@@ -45,39 +47,19 @@
     </div>
 </div>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<h2>All Users</h2>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+@foreach(var user in Model.ListOfUsers)
+{
+    <div class="container">  
+        <h2 style="display:inline-block;">@Html.ActionLink(@user.ID, "GoToUsersHome", new { userName = @user.ID })</h2>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+}
 
 @if (@ViewBag.UserName != null)
 {
     <input id="userName" name=@ViewBag.UserName value=@ViewBag.UserName type="hidden">
 }
-
 
 @section Scripts {
 
@@ -85,13 +67,11 @@
         function passUserNameToIndex() {
             var x = $("#userName").val();
 
-            if (x == null)
-            {
+            if (x == null) {
                 var URL = window.location.protocol + "//" + window.location.host
                 window.location.href = URL;
             }
-            else
-            {
+            else {
                 var URL = window.location.protocol + "//" + window.location.host + "/?UserName=" + x;
                 window.location.href = URL;
             }

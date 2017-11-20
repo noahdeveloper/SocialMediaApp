@@ -58,17 +58,50 @@ namespace SocialMediaApp.Controllers
                 string path = Server.MapPath("~/Uploads/");
                 List<string> imageExtensions = new List<string> { ".JPG", ".JPE", ".BMP", ".GIF", ".PNG" };
 
-                //if is image file
-                if (imageExtensions.Contains(Path.GetExtension(Path.GetExtension(file.FileName).ToUpperInvariant())))
+                string fileType = Path.GetExtension(file.FileName);
+                string fileName = model.ID + fileType;
+                
+
+                //if file is image
+                if (imageExtensions.Contains(Path.GetExtension(Path.GetExtension(fileName).ToUpperInvariant())))
                 {
-                    try
+                    //If file exits
+                    if (System.IO.File.Exists(path + fileName))
                     {
-                        Directory.CreateDirectory(path);
-                        file.SaveAs(path + model.ID + Path.GetExtension(file.FileName));
+                        //Delete
+                        try
+                        {
+                            System.IO.File.Delete(path + fileName);
+                        }
+                        catch(Exception ex)
+                        {
+                            string error = ex.Message;
+                        }
+
+                        //Save
+                        try
+                        {
+                            Directory.CreateDirectory(path);
+                            file.SaveAs(path + fileName);
+                        }
+                        catch (Exception ex)
+                        {
+                            string error = ex.Message;
+                        }
+
                     }
-                    catch (Exception ex)
+                    else //if file does not exist
                     {
-                        string error = ex.Message;
+                        //Save
+                        try
+                        {
+                            Directory.CreateDirectory(path);
+                            file.SaveAs(path + fileName);
+                        }
+                        catch (Exception ex)
+                        {
+                            string error = ex.Message;
+                        }
                     }
                 }
                 else
