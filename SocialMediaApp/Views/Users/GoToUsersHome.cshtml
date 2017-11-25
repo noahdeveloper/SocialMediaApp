@@ -63,7 +63,7 @@
     <script>
         $(document).ready(function () {
 
-            var data = "Test";
+            //var data = "Test";
 
             //$.ajax({
             //    type: 'POST',
@@ -73,11 +73,63 @@
             //    processData: false
             //});
 
-            $.ajax({
+            @*$.ajax({
                 type: 'POST',
                 url:'@Url.Action("GetImageName", new { fileName = @ViewBag.UserName })',
                 contentType: false,
-                processData: false
+                processData: false,
+                success: function (data) {
+                    alert(data);
+                },
+                complete: function (data) {
+                    alert(data);
+                }
+            });*@
+
+            @*$.ajax({
+                type: 'GET',
+                url: '@Url.Action("GetImageName", new { fileName = @ViewBag.UserName })',
+                dataType: 'Text/html',
+                success: function (data) {
+                    alert(data);
+                    document.write(data);
+                },
+                complete: function (data) {
+                    alert("This is a test");
+                }
+            });*@
+
+            @*jQuery.ajax({
+                url: '@Url.Action("GetImageName", new { fileName = @ViewBag.UserName })',
+                type: 'get',
+                dataType: 'thtml',
+                success: function (data) {
+                    alert(data);
+                    document.write(data);
+                }
+            });*@
+
+            @*$.get("@Url.Action("GetImageName", new { fileName = @ViewBag.UserName })", function (data, status) {
+                alert("Data: " + data.d + "\nStatus: " + status);
+            });*@
+
+            @*$.ajax({
+                type: "POST",
+                url: "@Url.Action("GetImageName")",
+                data: "{'fileName':'@ViewBag.UserName'}",
+                //contentType: "application/json; charset=utf-8",
+                //dataType: "html",
+                success: function (data) {
+                    alert(data.foo);
+                }
+            });*@
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("GetImageName", new { fileName = @ViewBag.UserName })",
+                success: function (data) {
+                    alert(data.foo);
+                }
             });
 
         });

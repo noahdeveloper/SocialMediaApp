@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using SocialMediaApp.Models;
 using System.IO;
+using System.Web.Services;
 
 namespace SocialMediaApp.Controllers
 {
@@ -24,7 +25,14 @@ namespace SocialMediaApp.Controllers
 
             viewModel.ListOfUsers = (from x in _context.UserInformation select x).ToList();
 
-            ViewBag.UserName = Request.Cookies["userNameSocialMediaApp"].Value;
+            if (Request.Cookies["userNameSocialMediaApp"].Value != null)
+            {
+                ViewBag.UserName = Request.Cookies["userNameSocialMediaApp"].Value;
+            }
+            else
+            {
+                return RedirectToAction("SignIn", "SignIn");
+            }
 
             return View(viewModel);
         }
@@ -46,24 +54,30 @@ namespace SocialMediaApp.Controllers
         }
 
         //Gets image with parameter name
-        public string GetImageName(string fileName)
+        [WebMethod]
+        public ActionResult GetImageName(string fileName)
         {
-            string file = String.Empty;
+            string data = String.Empty;
             string path = Server.MapPath("~/Uploads/");
 
             if (!String.IsNullOrEmpty(fileName))
             {
                 if (System.IO.File.Exists(path + fileName))
                 {
-                    file = Path.GetFileName(path + fileName);
+                    data = Path.GetFileName(path + fileName);
                 }
             }
             else
             {
-                file = "No file found.";
+                data = "No data found.";
             }
 
-            return file;
+
+            return Json(new { foo = "123" });
         }
+
+        //Function to check if file exists in server:
+        //Create function to check for file where it starts with user name.
+
     }
 }
