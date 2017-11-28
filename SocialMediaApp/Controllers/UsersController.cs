@@ -56,28 +56,47 @@ namespace SocialMediaApp.Controllers
         //Gets image with parameter name
         [WebMethod]
         public ActionResult GetImageName(string fileName)
+       {
+            string data = String.Empty;
+            string path = Server.MapPath("~/Uploads/");
+
+            data = ImageInServer(fileName);
+
+            return Json(new { result = data });
+        }
+
+        public string ImageInServer(string fileName)
         {
             string data = String.Empty;
             string path = Server.MapPath("~/Uploads/");
 
-            if (!String.IsNullOrEmpty(fileName))
+            if (System.IO.File.Exists(path + fileName + ".JPG"))
             {
-                if (System.IO.File.Exists(path + fileName))
-                {
-                    data = Path.GetFileName(path + fileName);
-                }
+                data = fileName + ".JPG";
+            }
+            else if (System.IO.File.Exists(path + fileName + ".JPE"))
+            {
+                data = fileName + ".JPE";
+            }
+            else if (System.IO.File.Exists(path + fileName + ".BMP"))
+            {
+                data = fileName + ".BMP";
+            }
+            else if (System.IO.File.Exists(path + fileName + ".GIF"))
+            {
+                data = fileName + ".GIF";
+            }
+            else if (System.IO.File.Exists(path + fileName + ".PNG"))
+            {
+                data = fileName + ".PNG";
             }
             else
             {
-                data = "No data found.";
+                data = "Not Found";
             }
 
-
-            return Json(new { foo = "123" });
+            return data;
         }
-
-        //Function to check if file exists in server:
-        //Create function to check for file where it starts with user name.
 
     }
 }
