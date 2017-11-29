@@ -46,8 +46,7 @@
     </div>
 </div>
 
-@*<img src="~/Uploads/test.png" alt="User Profile Picture"/>*@
-<img id="myImage" src="~/Uploads/" alt="User Profile Picture" />
+<img id="myImage" name="myImage" alt="User Profile Picture" />
 <div class="container"><h2>@Model.ID</h2></div>
 <div class="container"><h2>@Model.Age</h2></div>
 <div class="container"><h2>@Model.FavoriteQuote</h2></div>
@@ -60,22 +59,18 @@
 
 
 @section Scripts {
-
     <script>
-        
-
         $(document).ready(function () {
+           
             var imageName = null;
             $.ajax({
                 type: "POST",
                 url: "@Url.Action("GetImageName", new { fileName = @ViewBag.UserName })",
                 success: function (data) {
                     imageName = data.result;
-                    alert(imageName);
-                    
+                    document.getElementById("myImage").src = "/Uploads/test.png";
                 }
             });
-            document.getElementById("myImage").src = "~/Uploads/test.png";
         });
     </script>
 
