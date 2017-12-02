@@ -1,8 +1,11 @@
-﻿@model SocialMediaApp.Models.UsersViewModel
-
+﻿
 @{
-    ViewBag.Title = "Users";
+    ViewBag.Title = "InboxHome";
 }
+
+<style>
+    .btn {background-color:lightblue;}
+</style>
 
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -20,12 +23,10 @@
                 <li>@Html.ActionLink("Users", "Users", "Users")</li>
                 <li>@Html.ActionLink("Inbox", "InboxHome", "Inbox")</li>
                 <li>@Html.ActionLink("Settings", "UserProfile", "Settings")</li>
-                @*<li><a href="javascript:void(0);" onclick="passUserNameToSettings()">Settings</a></li>*@
             </ul>
 
             @if (@ViewBag.UserName != null)
             {
-
                 @Html.AntiForgeryToken()
 
                 <ul class="nav navbar-nav navbar-right">
@@ -34,7 +35,6 @@
                     </li>
                     <li>@Html.ActionLink("Sign Out", "SignIn", "SignIn")</li>
                 </ul>
-
             }
             else
             {
@@ -47,14 +47,10 @@
     </div>
 </div>
 
-<h2>All Users</h2>
+<div style="padding-top:10%;">
+    <input type="button" value="Create" class="btn btn-default" style="width:30%; height:60px;" onclick="location.href='@Url.Action("Create", "Inbox")'" />
+</div>
 
-@foreach(var user in Model.ListOfUsers)
-{
-    <div class="container">  
-        <h2 style="display:inline-block;">@Html.ActionLink(@user.ID, "GoToUsersHome", new { userName = @user.ID })</h2>
-    </div>
-}
 
 @if (@ViewBag.UserName != null)
 {

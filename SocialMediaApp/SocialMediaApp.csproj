@@ -336,11 +336,12 @@
     <Content Include="Views\Friends\Friends.cshtml" />
     <Content Include="Views\Users\Users.cshtml" />
     <Content Include="Views\Users\GoToUsersHome.cshtml" />
+    <Content Include="Views\Inbox\InboxHome.cshtml" />
+    <Content Include="Views\Inbox\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\" />
-    <Folder Include="Views\Inbox\" />
     <Folder Include="Views\Upload\" />
   </ItemGroup>
   <ItemGroup>

@@ -24,7 +24,6 @@
 
             @if (@ViewBag.UserName != null)
             {
-
                 @Html.AntiForgeryToken()
 
                 <ul class="nav navbar-nav navbar-right">
@@ -33,7 +32,6 @@
                     </li>
                     <li>@Html.ActionLink("Sign Out", "SignIn", "SignIn")</li>
                 </ul>
-
             }
             else
             {
@@ -46,7 +44,7 @@
     </div>
 </div>
 
-<img id="myImage" name="myImage" alt="User Profile Picture" />
+<img id="myImage" name="myImage" alt="User Profile Picture" style="width:50%; height:60%; margin-top:5%;"/>
 <div class="container"><h2>@Model.ID</h2></div>
 <div class="container"><h2>@Model.Age</h2></div>
 <div class="container"><h2>@Model.FavoriteQuote</h2></div>
@@ -56,7 +54,6 @@
 {
     <input id="userName" name=@ViewBag.UserName value=@ViewBag.UserName type="hidden">
 }
-
 
 @section Scripts {
     <script>
@@ -68,7 +65,7 @@
                 url: "@Url.Action("GetImageName", new { fileName = @ViewBag.UserName })",
                 success: function (data) {
                     imageName = data.result;
-                    document.getElementById("myImage").src = "/Uploads/test.png";
+                    document.getElementById("myImage").src = "/Uploads/" + imageName;
                 }
             });
         });

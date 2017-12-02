@@ -6,6 +6,7 @@ using SocialMediaApp.Models;
 using System.Collections.Generic;
 using System.Linq;
 using SocialMediaApp.Controllers;
+using System.Drawing;
 
 namespace SocialMediaApp.Controllers
 {
@@ -61,7 +62,6 @@ namespace SocialMediaApp.Controllers
                 string fileType = Path.GetExtension(file.FileName);
                 string fileName = model.ID + fileType;
                 
-
                 //if file is image
                 if (imageExtensions.Contains(Path.GetExtension(Path.GetExtension(fileName).ToUpperInvariant())))
                 {

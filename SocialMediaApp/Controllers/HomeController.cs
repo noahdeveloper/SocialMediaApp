@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SocialMediaApp.Models;
+using System.Web.Services;
 
 namespace SocialMediaApp.Controllers
 {
@@ -20,25 +21,65 @@ namespace SocialMediaApp.Controllers
         {
             if (!String.IsNullOrEmpty(userName))
             {
+                UserInformation model = new UserInformation();
+
+                var user = _context.UserInformation.Where(x => x.ID == userName).FirstOrDefault();
+
+                model.ID = user.ID;
+                model.Age = user.Age;
+                model.FavoriteQuote = user.FavoriteQuote;
+                model.ProfilePicName = user.ProfilePicName;
+
                 ViewBag.UserName = userName;
-                return View();
+                return View(model);
             }
 
             return RedirectToAction("SignIn", "SignIn");
         }
 
-        public ActionResult About()
+        //Gets image with parameter name
+        [WebMethod]
+        public ActionResult GetImageName(string fileName)
         {
-            ViewBag.Message = "Your application description page.";
+            string data = String.Empty;
+            string path = Server.MapPath("~/Uploads/");
 
-            return View();
+            data = ImageInServer(fileName);
+
+            return Json(new { result = data });
         }
 
-        public ActionResult Contact()
+        public string ImageInServer(string fileName)
         {
-            ViewBag.Message = "Your contact page.";
+            string data = String.Empty;
+            string path = Server.MapPath("~/Uploads/");
 
-            return View();
+            if (System.IO.File.Exists(path + fileName + ".JPG"))
+            {
+                data = fileName + ".JPG";
+            }
+            else if (System.IO.File.Exists(path + fileName + ".JPE"))
+            {
+                data = fileName + ".JPE";
+            }
+            else if (System.IO.File.Exists(path + fileName + ".BMP"))
+            {
+                data = fileName + ".BMP";
+            }
+            else if (System.IO.File.Exists(path + fileName + ".GIF"))
+            {
+                data = fileName + ".GIF";
+            }
+            else if (System.IO.File.Exists(path + fileName + ".PNG"))
+            {
+                data = fileName + ".PNG";
+            }
+            else
+            {
+                data = "Not Found";
+            }
+
+            return data;
         }
     }
 }
