@@ -1,7 +1,118 @@
-﻿
+﻿@using SocialMediaApp.Models
+@model ConversationViewModel
 @{
     ViewBag.Title = "Create";
 }
 
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="javascript:void(0);" onclick="passUserNameToIndex()">NP Chat</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="javascript:void(0);" onclick="passUserNameToIndex()">Home</a></li>
+                <li>@Html.ActionLink("Users", "Users", "Users")</li>
+                <li>@Html.ActionLink("Inbox", "InboxHome", "Inbox")</li>
+                <li>@Html.ActionLink("Settings", "UserProfile", "Settings")</li>
+                @*<li><a href="javascript:void(0);" onclick="passUserNameToSettings()">Settings</a></li>*@
+            </ul>
 
+            @if (@ViewBag.UserName != null)
+            {
 
+                @Html.AntiForgeryToken()
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        @Html.ActionLink((string)ViewBag.UserName, "Index", "Home", new { userName = @ViewBag.UserName }, htmlAttributes: new { title = "Manage" })
+                    </li>
+                    <li>@Html.ActionLink("Sign Out", "SignIn", "SignIn")</li>
+                </ul>
+
+            }
+            else
+            {
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Register", "SignUp", "Register", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                    <li>@Html.ActionLink("Sign In", "SignIn", "SignIn", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("Create", "Inbox", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.ConversationCoOwner)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConversationCoOwner, new { @class = "col-m-2 control-label" })
+        @Model.ConversationCoOwner
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.InitialMessage, new { @class = "col-m-2 control-label" })
+        @Html.TextAreaFor(m => m.InitialMessage, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Send" style="margin-top:10px;" />
+    </div>
+}
+
+@if (@ViewBag.UserName != null)
+{
+    <input id="userName" name=@ViewBag.UserName value=@ViewBag.UserName type="hidden">
+}
+
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+
+            var imageName = null;
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("GetImageName", new { fileName = @ViewBag.UserName })",
+                success: function (data) {
+                    imageName = data.result;
+                    document.getElementById("myImage").src = "/Uploads/" + imageName;
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function passUserNameToIndex() {
+            var x = $("#userName").val();
+
+            if (x == null) {
+                var URL = window.location.protocol + "//" + window.location.host
+                window.location.href = URL;
+            }
+            else {
+                var URL = window.location.protocol + "//" + window.location.host + "/?UserName=" + x;
+                window.location.href = URL;
+            }
+        }
+    </script>
+
+    <script>
+        var x = $("#userName").val();
+
+        $(document).ready(function () {
+            setCookie("userNameSocialMediaApp", x, 1);
+        });
+
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+    </script>
+}

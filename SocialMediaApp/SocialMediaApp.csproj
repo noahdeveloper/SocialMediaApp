@@ -256,8 +256,13 @@
     <Compile Include="Migrations\201711021316510_Update_UserInformation1.Designer.cs">
       <DependentUpon>201711021316510_Update_UserInformation1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712030644479_AddConversation.cs" />
+    <Compile Include="Migrations\201712030644479_AddConversation.Designer.cs">
+      <DependentUpon>201712030644479_AddConversation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Conversation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\UserAccount.cs" />
@@ -338,6 +343,7 @@
     <Content Include="Views\Users\GoToUsersHome.cshtml" />
     <Content Include="Views\Inbox\InboxHome.cshtml" />
     <Content Include="Views\Inbox\Create.cshtml" />
+    <Content Include="Views\Inbox\WithWho.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -398,6 +404,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711021316510_Update_UserInformation1.resx">
       <DependentUpon>201711021316510_Update_UserInformation1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712030644479_AddConversation.resx">
+      <DependentUpon>201712030644479_AddConversation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

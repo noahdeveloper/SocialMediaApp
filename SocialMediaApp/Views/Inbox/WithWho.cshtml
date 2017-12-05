@@ -1,11 +1,8 @@
-﻿
+﻿@using SocialMediaApp.Models
+@model ConversationViewModel
 @{
-    ViewBag.Title = "InboxHome";
+    ViewBag.Title = "Create";
 }
-
-<style>
-    .btn {background-color:lightblue;}
-</style>
 
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -23,10 +20,12 @@
                 <li>@Html.ActionLink("Users", "Users", "Users")</li>
                 <li>@Html.ActionLink("Inbox", "InboxHome", "Inbox")</li>
                 <li>@Html.ActionLink("Settings", "UserProfile", "Settings")</li>
+                @*<li><a href="javascript:void(0);" onclick="passUserNameToSettings()">Settings</a></li>*@
             </ul>
 
             @if (@ViewBag.UserName != null)
             {
+
                 @Html.AntiForgeryToken()
 
                 <ul class="nav navbar-nav navbar-right">
@@ -35,6 +34,7 @@
                     </li>
                     <li>@Html.ActionLink("Sign Out", "SignIn", "SignIn")</li>
                 </ul>
+
             }
             else
             {
@@ -47,10 +47,15 @@
     </div>
 </div>
 
-<div style="padding-top:10%;">
-    <input type="button" value="Create" class="btn btn-default" style="width:30%; height:60px;" onclick="location.href='@Url.Action("WithWho", "Inbox")'" />
-</div>
 
+
+@foreach (var user in Model.AllUsers)
+{
+
+    <div class="container">
+        <h2 style="display:inline-block;">@Html.ActionLink(@user, "Create", new { conversationCoOwner = user })</h2>
+    </div>
+}
 
 @if (@ViewBag.UserName != null)
 {
@@ -58,6 +63,21 @@
 }
 
 @section Scripts {
+
+    <script>
+        $(document).ready(function () {
+
+            var imageName = null;
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("GetImageName", new { fileName = @ViewBag.UserName })",
+                success: function (data) {
+                    imageName = data.result;
+                    document.getElementById("myImage").src = "/Uploads/" + imageName;
+                }
+            });
+        });
+    </script>
 
     <script>
         function passUserNameToIndex() {
@@ -89,3 +109,4 @@
         }
     </script>
 }
+
