@@ -1,4 +1,5 @@
-﻿
+﻿@using SocialMediaApp.Models
+@model InboxViewModel
 @{
     ViewBag.Title = "InboxHome";
 }
@@ -51,11 +52,35 @@
     <input type="button" value="Create" class="btn btn-default" style="width:30%; height:60px;" onclick="location.href='@Url.Action("WithWho", "Inbox")'" />
 </div>
 
+@if (ViewBag.NoConversation != null)
+{
+    <h2 style="padding-top:5%;">No conversations found.</h2>
+}
+
+@if (ViewBag.conversationExist != null)
+{
+    <h2 style="padding-top:5%;">Conversation already exists.</h2>
+}
 
 @if (@ViewBag.UserName != null)
 {
     <input id="userName" name=@ViewBag.UserName value=@ViewBag.UserName type="hidden">
 }
+
+@foreach (var conversation in Model.Conversations)
+{
+    <h3>@Html.ActionLink(conversation, "GoToConversation", new { conversationCoOwner = conversation })</h3>
+}
+
+@*@if (ViewBag.conversationExist == null)
+{
+    foreach (var conversation in Model.Conversations)
+    {
+        <h3>@Html.ActionLink(conversation, "GoToConversation", new { conversationCoOwner = conversation })</h3>
+    }
+}*@
+
+
 
 @section Scripts {
 

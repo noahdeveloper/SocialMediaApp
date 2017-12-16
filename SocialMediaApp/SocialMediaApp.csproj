@@ -260,10 +260,20 @@
     <Compile Include="Migrations\201712030644479_AddConversation.Designer.cs">
       <DependentUpon>201712030644479_AddConversation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712080113163_AddConversationContent.cs" />
+    <Compile Include="Migrations\201712080113163_AddConversationContent.Designer.cs">
+      <DependentUpon>201712080113163_AddConversationContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712130140164_UpdateToConversationContent.cs" />
+    <Compile Include="Migrations\201712130140164_UpdateToConversationContent.Designer.cs">
+      <DependentUpon>201712130140164_UpdateToConversationContent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Conversation.cs" />
+    <Compile Include="Models\ConversationContent.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\InboxViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Models\UserInformation.cs" />
@@ -344,6 +354,7 @@
     <Content Include="Views\Inbox\InboxHome.cshtml" />
     <Content Include="Views\Inbox\Create.cshtml" />
     <Content Include="Views\Inbox\WithWho.cshtml" />
+    <Content Include="Views\Inbox\GoToConversation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -407,6 +418,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712030644479_AddConversation.resx">
       <DependentUpon>201712030644479_AddConversation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712080113163_AddConversationContent.resx">
+      <DependentUpon>201712080113163_AddConversationContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712130140164_UpdateToConversationContent.resx">
+      <DependentUpon>201712130140164_UpdateToConversationContent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

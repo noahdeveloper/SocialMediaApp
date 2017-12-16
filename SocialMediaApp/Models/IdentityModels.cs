@@ -23,6 +23,7 @@ namespace SocialMediaApp.Models
         public DbSet<UserAccount> UserAccount { get; set; }
         public DbSet<UserInformation> UserInformation { get; set; }
         public DbSet<Conversation> Conversation { get; set; }
+        public DbSet<ConversationContent> ConversationContent { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

@@ -23,16 +23,11 @@ namespace SocialMediaApp.Controllers
             //List of all users
             UsersViewModel viewModel = new UsersViewModel();
 
-            viewModel.ListOfUsers = (from x in _context.UserInformation select x).ToList();
+            string userName = Request.Cookies["userNameSocialMediaApp"].Value;
 
-            if (Request.Cookies["userNameSocialMediaApp"].Value != null)
-            {
-                ViewBag.UserName = Request.Cookies["userNameSocialMediaApp"].Value;
-            }
-            else
-            {
-                return RedirectToAction("SignIn", "SignIn");
-            }
+            ViewBag.UserName = userName;
+
+            viewModel.ListOfUsers = (from x in _context.UserInformation where x.ID != userName select x).ToList();
 
             return View(viewModel);
         }
