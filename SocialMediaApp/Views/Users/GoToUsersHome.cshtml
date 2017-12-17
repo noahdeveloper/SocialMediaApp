@@ -3,6 +3,12 @@
     ViewBag.Title = "GoToUsersHome";
 }
 
+<style>
+    #myImage {
+        transform: rotate(90deg);
+    }
+</style>
+
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -17,7 +23,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="javascript:void(0);" onclick="passUserNameToIndex()">Home</a></li>
                 <li>@Html.ActionLink("Users", "Users", "Users")</li>
-                <li>@Html.ActionLink("Inbox", "Index", "Inbox")</li>
+                <li>@Html.ActionLink("Inbox", "InboxHome", "Inbox")</li>
                 <li>@Html.ActionLink("Settings", "UserProfile", "Settings")</li>
                 @*<li><a href="javascript:void(0);" onclick="passUserNameToSettings()">Settings</a></li>*@
             </ul>
@@ -44,7 +50,9 @@
     </div>
 </div>
 
-<img id="myImage" name="myImage" alt="User Profile Picture" style="width:50%; height:60%; margin-top:5%;"/>
+<h2 style="padding-bottom:2%;">@Model.ID's home</h2>
+
+<img id="myImage" name="myImage" alt="User Profile Picture" style="width:50%; height:60%; margin-top:5%; margin-bottom:5%; margin-left:-5%;"/>
 <div class="container"><h2>@Model.ID</h2></div>
 <div class="container"><h2>@Model.Age</h2></div>
 <div class="container"><h2>@Model.FavoriteQuote</h2></div>
@@ -62,7 +70,7 @@
             var imageName = null;
             $.ajax({
                 type: "POST",
-                url: "@Url.Action("GetImageName", new { fileName = @ViewBag.UserName })",
+                url: "@Url.Action("GetImageName", new { fileName = @Model.ProfilePicName })",
                 success: function (data) {
                     imageName = data.result;
                     document.getElementById("myImage").src = "/Uploads/" + imageName;

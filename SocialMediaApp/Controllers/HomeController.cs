@@ -30,6 +30,13 @@ namespace SocialMediaApp.Controllers
                 model.FavoriteQuote = user.FavoriteQuote;
                 model.ProfilePicName = user.ProfilePicName;
 
+                if (user.Age == 0 && user.FavoriteQuote == null && user.ProfilePicName == null)
+                {
+                    ViewBag.UserName = userName;
+                    ViewBag.NoInfo = true;
+                    return View(model);
+                }
+
                 ViewBag.UserName = userName;
                 return View(model);
             }

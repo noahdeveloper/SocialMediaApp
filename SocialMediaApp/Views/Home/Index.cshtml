@@ -2,6 +2,12 @@
     ViewBag.Title = "Home Page";
 }
 
+<style>
+    #myImage {
+        transform: rotate(90deg);
+    }
+</style>
+
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -20,7 +26,7 @@
                 <li>@Html.ActionLink("Settings", "UserProfile", "Settings")</li>
                 @*<li><a href="javascript:void(0);" onclick="passUserNameToSettings()">Settings</a></li>*@
             </ul>
-            
+
             @if (@ViewBag.UserName != null)
             {
 
@@ -45,10 +51,19 @@
     </div>
 </div>
 
-<img id="myImage" name="myImage" alt="User Profile Picture" style="width:50%; height:60%; margin-top:5%;" />
-<div class="container"><h2>@Model.ID</h2></div>
-<div class="container"><h2>@Model.Age</h2></div>
-<div class="container"><h2>@Model.FavoriteQuote</h2></div>
+<h2 style="margin-bottom:3%;">Home</h2>
+
+@if (ViewBag.NoInfo == true)
+{
+    <div>Click @Html.ActionLink("here", "UserProfile", "Settings") to tell us a little more about you. </div>
+}
+else
+{
+    <img id="myImage" name="myImage" alt="User Profile Picture" style="width:50%; height:60%; margin-top:5%;margin-bottom:5%;margin-left:-5%;" />
+    <div class="container"><h2>@Model.Age</h2></div>
+    <div class="container"><h2>@Model.FavoriteQuote</h2></div>
+}
+
 
 
 @if (@ViewBag.UserName != null)
